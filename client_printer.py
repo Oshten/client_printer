@@ -45,21 +45,21 @@ def main():
         return
     client.send(START_PRINT_OUT.encode())
 
-    next_record = 256
-    while next_record < 1002:
-        answer_status, answer_mailing_status = request_all_statuses()
-        print(find_errors(answer_status))
-        buffer_full, qyentity_pages = find_record_number(answer_mailing_status)
-        if buffer_full > 206 or qyentity_pages:
-            time.sleep(1)
-            continue
-        for i, record in enumerate(DATA_ARREY[(next_record):(next_record+50)]):
-            client.send(TEXT_RECORD.format(i + 1 + next_record, record).encode())
-        next_record += 50
-        if next_record > 1001:
-            next_record = 1001
+next_record = 256
+while next_record < 1002:
+    answer_status, answer_mailing_status = request_all_statuses()
+    print(find_errors(answer_status))
+    buffer_full, qyentity_pages = find_record_number(answer_mailing_status)
+    if buffer_full > 206 or qyentity_pages:
+        time.sleep(1)
+        continue
+    for i, record in enumerate(DATA_ARREY[(next_record):(next_record+50)]):
+        client.send(TEXT_RECORD.format(i + 1 + next_record, record).encode())
+    next_record += 50
+    if next_record > 1001:
+        next_record = 1001
 
-    client.close()
+client.close()
 
 if __name__ == '__main__':
     main()

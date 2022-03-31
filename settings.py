@@ -1,10 +1,10 @@
 HOST = 'localhost'                                          # хост принтера
 PORT = 8000                                                 # порт, к которому подключен принтер
 
-STATUS_REQUEST = '^0?RS'
-MAILING_STATUS_REQUEST = '^0?SM'
-TEXT_RECORD = '^0=MR{} {}'
-START_PRINT_OUT = '^0!GO'
+STATUS_REQUEST = '^0?RS\n\r'
+MAILING_STATUS_REQUEST = '^0?SM\n\r'
+TEXT_RECORD = '^0=MR{} {}\n\r'
+START_PRINT_OUT = '^0!GO\n\r'
 
 ERRORS = {
     '1015': 'Буфер заполнен',
